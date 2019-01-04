@@ -1,3 +1,5 @@
+/* Reactアプリのエントリポイントとなるファイル。
+* ブラウザがコードを読み込んだときに最初に実行されるコード。*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

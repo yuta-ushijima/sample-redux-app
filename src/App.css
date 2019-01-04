@@ -1,3 +1,6 @@
+/* App.jsに適用されるスタイルシート.
+   App.jsから呼び出される
+*/
 .App {
   text-align: center;
 }

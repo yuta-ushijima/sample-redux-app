@@ -1,3 +1,5 @@
+// Reactのアプリ本体となるコンポーネント
+// index.jsから呼び出され、divタグにマウントされる(className="App"の部分)
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';

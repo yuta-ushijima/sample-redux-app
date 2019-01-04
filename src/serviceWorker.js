@@ -1,3 +1,4 @@
+// ServiceWorkerを使用するためのファイル(PWAなどで使う)
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
