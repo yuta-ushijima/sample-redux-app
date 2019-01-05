@@ -18,6 +18,12 @@ class App extends Component {
         };
     }
   render() {
+    /* this.propsをonAddToDoとonRemoveToDoにそれぞれオブジェクトの分割代入を行う
+    *  onAddToDoとonRemoveTodoはプロパティ名(mapDispatchToPropsで定義している箇所)から参照していることに注意。
+    *  inputについては、constructor内で定義されている空文字のリテラルを参照している。
+    * */
+    const { onAddToDo, onRemoveToDo } = this.props;
+    const { input } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -30,8 +36,8 @@ class App extends Component {
                   return (
                       <li key={todo} className="listStyle">
                           <span>{todo}</span>
-                      <button onClick={() =>
-                  this.props.onRemoveToDo(todo)}>削除
+                      <button onClick={() => onRemoveToDo(todo)}>
+                          削除
                       </button>
                       </li>
                   );
@@ -42,8 +48,8 @@ class App extends Component {
           {/* this.state.inputで入力欄の内容を呼び出してaddTodoの引数に渡し、
               this.props.dispatchでDispatchを実行している
           */}
-          <button onClick={()=>
-          this.props.onAddToDo(this.state.input)}>追加
+          <button onClick={()=> onAddToDo(input)}>
+              追加
           </button>
       </div>
     );

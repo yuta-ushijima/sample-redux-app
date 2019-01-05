@@ -20,7 +20,7 @@ export function todos(state={
             return Object.assign({}, state);
         /* filter()... 引数todoに対して条件分岐を行い、その結果を反映した配列を生成*/
         case "REMOVE_TO_DO": state.list = state.list.filter(todo => {
-            if(action.todo != todo) {
+            if(action.todo !== todo) {
                 return true;
             }else {
                 return false
