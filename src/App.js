@@ -24,13 +24,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React Redux Todo list</h1>
         </header>
+          <h2>やることリスト</h2>
           <ul>
               {this.props.todos.map(todo => {
                   return (
-                      <li key={todo}>
+                      <li key={todo} className="listStyle">
                           <span>{todo}</span>
                       <button onClick={() =>
-                  this.props.dispatch(removeTodo(todo))}>削除
+                  this.props.onRemoveToDo(todo)}>削除
                       </button>
                       </li>
                   );
@@ -42,7 +43,7 @@ class App extends Component {
               this.props.dispatchでDispatchを実行している
           */}
           <button onClick={()=>
-          this.props.dispatch(addTodo(this.state.input))}>追加
+          this.props.onAddToDo(this.state.input)}>追加
           </button>
       </div>
     );
@@ -57,5 +58,18 @@ const mapStateToProps = state => {
     }
 };
 
+// mapDispatchToProps...引数にdispatchをおくことで、ActionのDispatchを行い、1つのオブジェクトを返す関数
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToDo(todo) {
+            dispatch(addTodo(todo))
+        },
+        onRemoveToDo(todo) {
+            dispatch(removeTodo(todo))
+        }
+    };
+};
+
 // Appを引数にして、connect経由でApp呼び出す。
-export default connect(mapStateToProps)(App);
+// connectの第2引数にmapDispatchToPropsを渡すと、this.propsの要素として追加することでDispatchを行うための関数を使うことができる
+export default connect(mapStateToProps, mapDispatchToProps)(App);
