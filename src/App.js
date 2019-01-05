@@ -6,8 +6,17 @@ import './App.css';
 // 個別のコンポーネントからStoreの情報にアクセスするため、
 // connect関数をインポートする
 import { connect } from 'react-redux';
+// actionsの関数を呼び出す
+import { addTodo, removeTodo } from "./actions";
 
 class App extends Component {
+    constructor() {
+        super();
+        // このコンポーネント内でのみ使用する変数stateを宣言
+        this.state = {
+            input: ""
+        };
+    }
   render() {
     return (
       <div className="App">
@@ -18,10 +27,23 @@ class App extends Component {
           <ul>
               {this.props.todos.map(todo => {
                   return (
-                      <li key={todo}>{todo}</li>
+                      <li key={todo}>
+                          <span>{todo}</span>
+                      <button onClick={() =>
+                  this.props.dispatch(removeTodo(todo))}>削除
+                      </button>
+                      </li>
                   );
               })}
           </ul>
+          <input type="text" onChange={e =>
+          this.setState({input: e.target.value})}/>
+          {/* this.state.inputで入力欄の内容を呼び出してaddTodoの引数に渡し、
+              this.props.dispatchでDispatchを実行している
+          */}
+          <button onClick={()=>
+          this.props.dispatch(addTodo(this.state.input))}>追加
+          </button>
       </div>
     );
   }
